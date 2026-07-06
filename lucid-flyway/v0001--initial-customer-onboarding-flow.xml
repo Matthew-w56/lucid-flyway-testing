@@ -1,0 +1,27 @@
+<lucid-flyway id="1">
+    <diagram-definition>
+        <diagram-title>Customer Onboarding Workflow</diagram-title>
+        <user-facing-description>The operational flow from a new customer signup through workspace readiness.</user-facing-description>
+        <development-scope-and-focus>
+            Track the customer onboarding workflow across signup intake, account creation, sales review, user messaging, and workspace readiness. Focus on service-level workflow and integration boundaries rather than implementation details inside individual services.
+        </development-scope-and-focus>
+    </diagram-definition>
+    <description>
+        Created the initial customer onboarding workflow. The first version captures the branch between self-service and sales-reviewed signups, then converges on account creation, welcome messaging, and workspace readiness.
+    </description>
+    <topology-changes><![CDATA[
+C^flowchart TD
+C^lead[Lead submits signup]
+C^approval{Plan requires sales approval?}
+C^account[Create customer account]
+C^review[Sales reviews request]
+C^email[Send welcome email]
+C^ready[Workspace ready]
+C^lead --> approval
+C^approval -->|No| account
+C^approval -->|Yes| review
+C^review --> account
+C^account --> email
+C^email --> ready
+    ]]></topology-changes>
+</lucid-flyway>

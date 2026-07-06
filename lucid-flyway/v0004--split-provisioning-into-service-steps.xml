@@ -1,0 +1,18 @@
+<lucid-flyway id="4">
+    <description>
+        Replaced the single account creation step with a more accurate provisioning sequence. The workflow now separates tenant record creation, identity setup, default project creation, and feature flag application before customer messaging.
+    </description>
+    <topology-changes><![CDATA[
+C^tenant[Create tenant record]
+C^identity[Configure identity provider]
+C^project[Create default project]
+C^flags[Apply plan feature flags]
+C^tenant --> identity
+C^identity --> project
+C^project --> flags
+U^risk -->|Approved| account^risk -->|Approved| tenant
+U^compliance -->|Cleared| account^compliance -->|Cleared| tenant
+U^account --> email^flags --> email
+D^account[Create customer account]
+    ]]></topology-changes>
+</lucid-flyway>

@@ -1,0 +1,17 @@
+<lucid-flyway id="3">
+    <description>
+        Introduced an automated risk screen before account creation. High-risk signups are sent to compliance review, approved cases return to the normal provisioning path, and rejected cases exit the onboarding workflow.
+    </description>
+    <topology-changes><![CDATA[
+C^risk{Risk score acceptable?}
+C^compliance[Compliance reviews signup]
+C^reject[Reject signup]
+C^risk -->|Approved| account
+C^risk -->|Needs review| compliance
+C^compliance -->|Cleared| account
+C^compliance -->|Rejected| reject
+U^payment -->|Valid| account^payment -->|Valid| risk
+U^review --> account^review --> risk
+U^trial -->|Trial allowed| account^trial -->|Trial allowed| risk
+    ]]></topology-changes>
+</lucid-flyway>
