@@ -1,0 +1,11 @@
+<lucid-flyway id="2">
+    <description>
+        Added a lightweight monitoring step after release and updated the review path so approved changes move into monitoring before the patch is considered released.
+    </description>
+    <topology-changes><![CDATA[
+C^monitor[Monitor rollout]
+C^review --> monitor
+C^monitor --> release
+D^review --> release
+    ]]></topology-changes>
+</lucid-flyway>

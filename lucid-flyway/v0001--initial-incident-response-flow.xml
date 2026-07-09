@@ -1,0 +1,26 @@
+<lucid-flyway id="1">
+    <diagram-definition>
+        <diagram-title>Small Incident Response Flow</diagram-title>
+        <user-facing-description>A compact workflow for handling a production issue from report through release.</user-facing-description>
+        <development-scope-and-focus>
+            Track the basic incident response path across intake, triage, diagnosis, implementation, review, and release. Keep the diagram intentionally small so tests can focus on simple topology changes.
+        </development-scope-and-focus>
+    </diagram-definition>
+    <description>
+        Created a small incident response workflow with six nodes. The flow moves from an incoming report through triage, diagnosis, fix development, review, and release.
+    </description>
+    <topology-changes><![CDATA[
+C^flowchart TD
+C^report[Issue reported]
+C^triage[Triage issue]
+C^diagnose[Diagnose cause]
+C^fix[Implement fix]
+C^review[Review change]
+C^release[Release patch]
+C^report --> triage
+C^triage --> diagnose
+C^diagnose --> fix
+C^fix --> review
+C^review --> release
+    ]]></topology-changes>
+</lucid-flyway>
