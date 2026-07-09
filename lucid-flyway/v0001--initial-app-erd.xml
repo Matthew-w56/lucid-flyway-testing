@@ -1,0 +1,40 @@
+<lucid-flyway id="1">
+    <diagram-definition>
+        <diagram-title>Imaginary App Data Model</diagram-title>
+        <user-facing-description>A small Mermaid ERD for users, documents, and user settings.</user-facing-description>
+        <development-scope-and-focus>
+            Describe the initial relational model for an imaginary document app. Focus on table structure, primary keys, and foreign key relationships between users, documents, and settings.
+        </development-scope-and-focus>
+    </diagram-definition>
+    <description>
+        Created the initial Mermaid ERD with USERS, DOCUMENTS, and SETTINGS tables. Users own documents and have one settings record.
+    </description>
+    <topology-changes><![CDATA[
+C^erDiagram
+C^USERS {
+C^    uuid id PK
+C^    string email UK
+C^    string display_name
+C^    datetime created_at
+C^    datetime updated_at
+C^}
+C^DOCUMENTS {
+C^    uuid id PK
+C^    uuid owner_user_id FK
+C^    string title
+C^    string visibility
+C^    datetime created_at
+C^    datetime updated_at
+C^}
+C^SETTINGS {
+C^    uuid id PK
+C^    uuid user_id FK
+C^    string locale
+C^    string timezone
+C^    boolean email_notifications_enabled
+C^    datetime updated_at
+C^}
+C^USERS ||--o{ DOCUMENTS : owns
+C^USERS ||--|| SETTINGS : configures
+    ]]></topology-changes>
+</lucid-flyway>
